@@ -9,7 +9,7 @@ const dbConnection = require('./database/connection')
 dotEnv.config()
 
 const app = express()
-const PORT = process.env.PORT || 3003
+const PORT = process.env.PORT || 3001
 
 // Connect to the database
 dbConnection()
