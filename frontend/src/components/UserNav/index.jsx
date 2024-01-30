@@ -1,16 +1,16 @@
 import './userNav.css'
 import logo from "../../assets/img/argentBankLogo.png"
-import {Link, useNavigate} from 'react-router-dom'
+import {Link, /*useNavigate*/} from 'react-router-dom'
 import { useSelector, useDispatch, } from 'react-redux'
 import {auth_service} from '../../services/auth'
 
 const UserNav = () => {
   const firstName= useSelector((state) => state.user.firstName);
  const dispatch = useDispatch();
-//const navigate = useNavigate();
+ //const navigate = useNavigate();
  const handleLogout = () => {
-  console.log('logout')
-  dispatch(auth_service.logout)
+  console.log('handleLogout')
+  dispatch(auth_service.logout())
   //navigate('/')
  }
   return (

@@ -18,21 +18,21 @@ const loginSlice= createSlice({
             state.isAuth=true;
             state.error=null;
         },
+
         loginFail: (state, action) =>{
-            state.token=null;
-            state.isAuth=false;
-            state.error= action.payload;
+            state.token = null;
+            state.isAuth = false;
+            state.error = action.payload;
         },
         logoutSuccess: (state) => {
-            console.log('logout success')
-            state.token=null;
-            state.isAuth=false;
-            state.error=null;
+            state.token = null;
+            state.isAuth = false;
+            state.error = null;
+        },
 
-        },
-        isToken: (state) => {
-            state.isAuth=true;
-        },
+        // isToken: (state) => {
+        //     state.isAuth=true;
+        // },
         
     }
 })
@@ -94,6 +94,6 @@ export const { userSuccess, userFail, userLogout, userUpdateSuccess, userUpdateF
 
 export const userReducer = userSlice.reducer;
 
-export const { loginSuccess, loginFail, logoutSuccess, isToken, logoClick } = loginSlice.actions;
+export const { loginSuccess, loginFail, logoutSuccess, /*isToken, logoClick*/ } = loginSlice.actions;
 
 export const loginReducer= loginSlice.reducer ;
