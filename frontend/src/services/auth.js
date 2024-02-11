@@ -1,14 +1,12 @@
 import {
-  loginFail,
+  setUserProfile, clearUserProfile, updateUserName, setUserError
+} from '../app/userSlice';
+
+import {
+  loginFailure,
   loginSuccess,
-  logoutSuccess,
-  /*isToken,*/
-  userFail,
-  userLogout,
-  userSuccess,
-  userUpdateFail,
-  userUpdateSuccess,
-} from '../app/redux';
+  logout,
+} from '../app/loginSlice';
 
 const BASE_URL = 'http://localhost:3001/api/v1';
 
@@ -22,11 +20,11 @@ const login = (email, password, rememberMe) => (dispatch) => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ email, password })
   })
     .then((response) => {
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error('No response, maybe network error');
       }
       return response.json();
     })
@@ -39,7 +37,7 @@ const login = (email, password, rememberMe) => (dispatch) => {
       dispatch(loginSuccess(data));
     })
     .catch((err) => {
-      dispatch(loginFail(err.message));
+      dispatch(loginFailure(err.message));
     });
 };
 
@@ -54,20 +52,20 @@ const userProfile = () => (dispatch) => {
   })
     .then((response) => {
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error('No response, maybe network error');
       }
       return response.json();
     })
     .then((data) => {
-      dispatch(userSuccess(data));
-      //dispatch(isToken());
+      
+      dispatch(setUserProfile(data));
     })
     .catch((err) => {
       if (err.message.includes('401')) {
         return;
       } else {
-        // Pour les autres types d'erreurs, dispatcher 'userFail' avec le message d'erreur.
-        dispatch(userFail(err.message));
+        
+        dispatch(setUserError(err.message));
       }
     });
 };
@@ -84,23 +82,23 @@ const updateProfile = (firstName, lastName) => (dispatch) => {
   })
     .then((response) => {
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error('No response, maybe network error');
       }
       return response.json();
     })
     .then((data) => {
-      dispatch(userUpdateSuccess(data));
+      dispatch(updateUserName(data));
     })
     .catch((err) => {
-      dispatch(userUpdateFail(err.message));
+      dispatch(setUserError(err.message));
     });
 };
 
-const logout = () => (dispatch) => {
-  //localStorage.removeItem('token');
-  dispatch(userLogout());
-  dispatch(logoutSuccess());
- //sessionStorage.clear();
+const log_out = () => (dispatch) => {
+
+  dispatch(logout());
+  dispatch(clearUserProfile());
+
 };
 
-export const auth_service = { login, logout, userProfile, updateProfile };
+export const auth_service = { login, log_out, userProfile, updateProfile };

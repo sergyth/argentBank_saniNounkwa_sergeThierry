@@ -9,7 +9,7 @@ import UserHeader from '../../components/UserHeader';
 import './profile.css'
 
 const User = () => {
-  document.title = 'Argent Bank - User Page';
+ 
   const token = useSelector((state) => state.login.token);
   const navigate = useNavigate();
   const dispatch = useDispatch();
