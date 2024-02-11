@@ -9,6 +9,10 @@ export const store = configureStore({
   reducer: {
     login: loginReducer,
     user: userReducer
-  }
+  },
+  middleware: (getDefaultMiddleware) =>
+  getDefaultMiddleware({
+    serializableCheck: false
+  }),
 
 })

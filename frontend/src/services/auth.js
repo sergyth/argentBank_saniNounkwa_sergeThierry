@@ -2,7 +2,7 @@ import {
   loginFail,
   loginSuccess,
   logoutSuccess,
-  isToken,
+  /*isToken,*/
   userFail,
   userLogout,
   userSuccess,
@@ -63,7 +63,12 @@ const userProfile = () => (dispatch) => {
       //dispatch(isToken());
     })
     .catch((err) => {
-      dispatch(userFail(err.message));
+      if (err.message.includes('401')) {
+        return;
+      } else {
+        // Pour les autres types d'erreurs, dispatcher 'userFail' avec le message d'erreur.
+        dispatch(userFail(err.message));
+      }
     });
 };
 
@@ -92,10 +97,10 @@ const updateProfile = (firstName, lastName) => (dispatch) => {
 };
 
 const logout = () => (dispatch) => {
-    dispatch(logoutSuccess());
-  sessionStorage.clear();
-  localStorage.removeItem('token');
-  //dispatch(userLogout());
+  //localStorage.removeItem('token');
+  dispatch(userLogout());
+  dispatch(logoutSuccess());
+ //sessionStorage.clear();
 };
 
 export const auth_service = { login, logout, userProfile, updateProfile };
