@@ -220,6 +220,11 @@ paths:
         description: This is the transaction id
         required: true
         type: integer
+      - in: body
+        name: body
+        description: Transaction payload
+        schema:
+            $ref: '#/definitions/update'
       responses:
         '200':
           description: Transaction updated successfully
@@ -320,18 +325,25 @@ definitions:
     properties:
       id:
         type: integer
-        format: int64
-      date:
-        type: string
+        description: This is the account id.
       description:
         type: string
       amount:
         type: number
         format: float
-      currency:
+        description: The amount of the transaction.
+      date:
         type: string
-      type:
+      balance: 
+        type: integer
+        format: int64
+      category:
         type: string
+      notes:
+        type: string
+  update:
+    type: object
+    properties:
       category:
         type: string
       notes:

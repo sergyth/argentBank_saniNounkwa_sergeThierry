@@ -1,39 +1,11 @@
 
-// import './form.css';
-// import {Link} from 'react-router-dom'
-
-// const Form = () => {
-//   return (
-//     <form>
-//       <div className="input-wrapper">
-//         <label htmlFor="username">Username</label>
-//         <input type="text" id="username" autoComplete="username"/>
-//       </div>
-//       <div className="input-wrapper">
-//         <label htmlFor="password">Password</label>
-//         <input type="password" id="password" autoComplete="current-password"/>
-//       </div>
-//       <div className="input-remember">
-//         <input type="checkbox" id="remember-me" />
-//         <label htmlFor="remember-me">Remember me</label>
-//       </div>
-
-//       <Link to="/user/profile" className="sign-in-button">
-//         Sign In
-//       </Link>
-//     </form>
-//   );
-// };
-// export default Form;
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {auth_service} from '../../services/auth';
 
-/**
- * Creates form component
- * @returns { HTMLElement }
- */
+
+
 const Form = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
